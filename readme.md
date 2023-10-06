@@ -62,5 +62,44 @@ function createCounter(n: number): () => number {
  */
 ```
 
-### Explanation
----
+## 03 To Be Or Not Be
+
+### [Problem Statement ↗️](https://leetcode.com/problems/to-be-or-not-to-be/?envType=study-plan-v2&envId=30-days-of-javascript)
+
+Write a function expect that helps developers test their code. It should take in any value val and return an object with the following two functions.
+
+- toBe(val) accepts another value and returns true if the two values === each other. If they are not equal, it should throw an error "Not Equal".
+- notToBe(val) accepts another value and returns true if the two values !== each other. If they are equal, it should throw an error "Equal".
+### Solution
+
+```js
+type ToBeOrNotToBe = {
+    toBe: (val: any) => boolean;
+    notToBe: (val: any) => boolean;
+};
+
+function expect(val: any): ToBeOrNotToBe {
+	return {
+        toBe: (val1: any):boolean => {
+            if (val1=== val){
+                return true
+            } else {
+                throw "Not Equal"
+            }
+        },
+        notToBe: (val2: any):boolean  => {
+             if (val2!== val){
+                return true
+            } else {
+                throw "Equal"
+            }
+        }
+    }
+};
+
+/**
+ * expect(5).toBe(5); // true
+ * expect(5).notToBe(5); // throws "Equal"
+ */
+
+```
