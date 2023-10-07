@@ -103,3 +103,51 @@ function expect(val: any): ToBeOrNotToBe {
  */
 
 ```
+
+## 04 Counter 2
+
+### [Problem Statement ↗️](https://leetcode.com/problems/counter-ii/?envType=study-plan-v2&envId=30-days-of-javascript)
+
+Write a function createCounter. It should accept an initial integer init. It should return an object with three functions.
+
+The three functions are:
+
+- increment() increases the current value by 1 and then returns it.
+- decrement() reduces the current value by 1 and then returns it.
+- reset() sets the current value to init and then returns it.
+### Solution
+
+```js
+type ReturnObj = {
+    increment: () => number,
+    decrement: () => number,
+    reset: () => number,
+}
+
+function createCounter(init: number): ReturnObj {
+    let val1 = init
+	return {
+        increment: () => {
+            val1 += 1
+            return val1
+        },
+         reset: () => {
+            val1 = init
+            return val1
+        },
+        decrement: () => {
+           val1 -= 1
+           return val1
+        },
+       
+    }
+};
+
+/**
+ * const counter = createCounter(5)
+ * counter.increment(); // 6
+ * counter.reset(); // 5
+ * counter.decrement(); // 4
+ */
+
+```
