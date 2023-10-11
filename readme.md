@@ -11,7 +11,10 @@ Note - The challenge will be done in Typescript
 ## Table of Content
 
 - [01 Create Hello World Function ↗️](#01-create-hello-world-function)
-- [01 Counter ↗️](#02-Counter)
+- [02 Counter ↗️](#02-Counter)
+- [03 To Be Or Not Be ↗️](#03-To-Be-Or-Not-Be)
+- [04 Counter 2 ↗️](#04-Counter-2)
+- [05 Apply Transform Over Each Element in Array↗️](#05-Apply-Transform-Over-Each-Element-in-Array)
 
 ## 01 Create Hello World Function
 
@@ -149,5 +152,27 @@ function createCounter(init: number): ReturnObj {
  * counter.reset(); // 5
  * counter.decrement(); // 4
  */
+
+```
+
+## 5 Apply Transform Over Each Element in Array
+### [Problem Statement ↗️](https://leetcode.com/problems/apply-transform-over-each-element-in-array/?envType=study-plan-v2&envId=30-days-of-javascript)
+
+Given an integer array arr and a mapping function fn, return a new array with a transformation applied to each element.
+
+The returned array should be created such that returnedArray[i] = fn(arr[i], i).
+
+Please solve it without the built-in Array.map method.
+
+### Solution 
+```javascript
+function map(arr: number[], fn: (n: number, i: number) => number): number[] {
+	const newArray: number [] = []
+    arr.forEach((item, index) => {
+        const val = fn(item, index)
+        newArray.push(val)
+    })
+    return newArray
+};
 
 ```
