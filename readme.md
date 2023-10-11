@@ -15,7 +15,8 @@ Note - The challenge will be done in Typescript
 - [03 To Be Or Not Be ↗️](#03-To-Be-Or-Not-Be)
 - [04 Counter 2 ↗️](#04-Counter-2)
 - [05 Apply Transform Over Each Element in Array↗️](#05-Apply-Transform-Over-Each-Element-in-Array)
-
+- [06 Filter Element from Array↗️](#06-Filter-Elements-from-Array)
+- [07 Apply Transform Over Each Element in Array↗️](#07-Array-Reduce-Transformation)
 ## 01 Create Hello World Function
 
 ### [Problem Statement ↗️](https://leetcode.com/problems/create-hello-world-function/?envType=study-plan-v2&envId=30-days-of-javascript)
@@ -155,7 +156,7 @@ function createCounter(init: number): ReturnObj {
 
 ```
 
-## 5 Apply Transform Over Each Element in Array
+## 05 Apply Transform Over Each Element in Array
 ### [Problem Statement ↗️](https://leetcode.com/problems/apply-transform-over-each-element-in-array/?envType=study-plan-v2&envId=30-days-of-javascript)
 
 Given an integer array arr and a mapping function fn, return a new array with a transformation applied to each element.
@@ -175,4 +176,61 @@ function map(arr: number[], fn: (n: number, i: number) => number): number[] {
     return newArray
 };
 
+```
+
+## 06 Filter Elements from Array
+### [Problem Statement ↗️](https://leetcode.com/problems/filter-elements-from-array/submissions/?envType=study-plan-v2&envId=30-days-of-javascript)
+
+Given an integer array `arr` and filtering function `fn`, return a filtered array `filteredArr`.
+The `fn` function takes one or two arguments
+- arr[i] - number from the arr
+- `i` - index of arr[i]
+filteredArr should only contain the elements from the arr for which the expression fn(arr[i], i) evaluates to a truthy value. A truthy value is a value where Boolean(value) returns true.
+
+Please solve it without the built-in Array.filter method.
+### Solution 
+```javascript
+type Fn = (n: number, i: number) => any
+
+function filter(arr: number[], fn: Fn): number[] {
+    const newArray: number[] = []
+
+    arr.forEach((item, index) =>{
+        const val = fn(item, index)
+        if(val){
+            newArray.push(item)
+        }
+    })
+    return newArray
+};
+```
+
+
+## 7 Array Reduce Transformation
+### [Problem Statement ↗️](https://leetcode.com/problems/filter-elements-from-array/description/?envType=study-plan-v2&envId=30-days-of-javascript)
+
+Given an integer array nums, a reducer function fn, and an initial value init, return a reduced array.
+
+A reduced array is created by applying the following operation: val = fn(init, nums[0]), val = fn(val, nums[1]), val = fn(val, nums[2]), ... until every element in the array has been processed. The final value of val is returned.
+
+If the length of the array is 0, it should return init.
+
+Please solve it without using the built-in Array.reduce method.
+### Solution 
+```javascript
+type Fn = (accum: number, curr: number) => number
+
+function reduce(nums: number[], fn: Fn, init: number): number {
+    let result:number = init
+
+    if(nums.length === 0){
+        return result
+    }
+
+    nums.forEach((item) => {
+        result = fn(result, item)
+        
+    })
+    return result
+};
 ```
