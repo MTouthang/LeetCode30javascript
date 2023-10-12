@@ -17,6 +17,7 @@ Note - The challenge will be done in Typescript
 - [05 Apply Transform Over Each Element in Array↗️](#05-Apply-Transform-Over-Each-Element-in-Array)
 - [06 Filter Element from Array↗️](#06-Filter-Elements-from-Array)
 - [07 Apply Transform Over Each Element in Array↗️](#07-Array-Reduce-Transformation)
+- [08 Function Composition↗️](#08-Function-Composition)
 ## 01 Create Hello World Function
 
 ### [Problem Statement ↗️](https://leetcode.com/problems/create-hello-world-function/?envType=study-plan-v2&envId=30-days-of-javascript)
@@ -233,4 +234,35 @@ function reduce(nums: number[], fn: Fn, init: number): number {
     })
     return result
 };
+```
+
+## 08 Function Composition
+### [Problem Statement ↗️](https://leetcode.com/problems/function-composition/description/?envType=study-plan-v2&envId=30-days-of-javascript)
+
+Given an array of functions [f1, f2, f3, ..., fn], return a new function fn that is the function composition of the array of functions.
+
+The function composition of [f(x), g(x), h(x)] is fn(x) = f(g(h(x))).
+
+The function composition of an empty list of functions is the identity function f(x) = x.
+
+You may assume each function in the array accepts one integer as input and returns one integer as output.
+### Solution 
+```javascript
+type F = (x: number) => number;
+
+function compose(functions: F[]): F {
+    
+	return function(x) {
+      let output = x
+      for(let i = functions.length-1; i>= 0; i--){
+          output = functions[i](output)
+      }  
+      return output;
+    }
+};
+
+/**
+ * const fn = compose([x => x + 1, x => 2 * x])
+ * fn(4) // 9
+ */
 ```
