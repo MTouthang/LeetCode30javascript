@@ -18,6 +18,9 @@ Note - The challenge will be done in Typescript
 - [06 Filter Element from Array↗️](#06-Filter-Elements-from-Array)
 - [07 Apply Transform Over Each Element in Array↗️](#07-Array-Reduce-Transformation)
 - [08 Function Composition↗️](#08-Function-Composition)
+- [09 Return Length of Arguments Passed ↗️](#09-Return-Length-of-Arguments-Passed)
+
+  
 ## 01 Create Hello World Function
 
 ### [Problem Statement ↗️](https://leetcode.com/problems/create-hello-world-function/?envType=study-plan-v2&envId=30-days-of-javascript)
@@ -264,5 +267,19 @@ function compose(functions: F[]): F {
 /**
  * const fn = compose([x => x + 1, x => 2 * x])
  * fn(4) // 9
+ */
+```
+## 09 Return Length of Arguments Passed
+### [Problem Statement ↗️](https://leetcode.com/problems/return-length-of-arguments-passed/description/?envType=study-plan-v2&envId=30-days-of-javascript)
+Write a function argumentsLength that returns the count of arguments passed to it
+```javascript
+type JSONValue = null | boolean | number | string | JSONValue[] | { [key: string]: JSONValue };
+
+function argumentsLength(...args: JSONValue[]): number {
+	return args.length
+};
+
+/**
+ * argumentsLength(1, 2, 3); // 3
  */
 ```
