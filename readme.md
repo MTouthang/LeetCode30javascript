@@ -19,6 +19,7 @@ Note - The challenge will be done in Typescript
 - [07 Apply Transform Over Each Element in Array↗️](#07-Array-Reduce-Transformation)
 - [08 Function Composition↗️](#08-Function-Composition)
 - [09 Return Length of Arguments Passed ↗️](#09-Return-Length-of-Arguments-Passed)
+- [10 Memoize](#10-Memoize)
 
   
 ## 01 Create Hello World Function
@@ -272,6 +273,8 @@ function compose(functions: F[]): F {
 ## 09 Return Length of Arguments Passed
 ### [Problem Statement ↗️](https://leetcode.com/problems/return-length-of-arguments-passed/description/?envType=study-plan-v2&envId=30-days-of-javascript)
 Write a function argumentsLength that returns the count of arguments passed to it
+
+### solution
 ```javascript
 type JSONValue = null | boolean | number | string | JSONValue[] | { [key: string]: JSONValue };
 
@@ -281,5 +284,47 @@ function argumentsLength(...args: JSONValue[]): number {
 
 /**
  * argumentsLength(1, 2, 3); // 3
+ */
+```
+
+## 10 Memoize
+### [Problem statement ↗️](https://leetcode.com/problems/memoize/?envType=study-plan-v2&envId=30-days-of-javascript)
+Given a function fn, return a memoized version of that function
+A memoized function is a function that will never be called twice with the same inputs. Instead it will return a cached value.
+
+You can assume there are 3 possible input functions: sum, fib, and factorial.
+
+sum accepts two integers a and b and returns a + b.
+fib accepts a single integer n and returns 1 if n <= 1 or fib(n - 1) + fib(n - 2) otherwise.
+factorial accepts a single integer n and returns 1 if n <= 1 or factorial(n - 1) * n otherwise.
+
+### Solution
+
+```javascript
+type Fn = (...params: number[]) => number
+
+function memoize(fn: Fn): Fn {
+    const cache = {}
+    return function(...args) {
+        const key: any = args
+        if(key in cache) {
+            return cache[key]
+        }
+        const output = fn(...args);
+        cache[key] = output
+        return output
+    }
+}
+
+
+/** 
+ * let callCount = 0;
+ * const memoizedFn = memoize(function (a, b) {
+ *	 callCount += 1;
+ *   return a + b;
+ * })
+ * memoizedFn(2, 3) // 5
+ * memoizedFn(2, 3) // 5
+ * console.log(callCount) // 1 
  */
 ```
