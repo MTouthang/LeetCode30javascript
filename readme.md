@@ -21,6 +21,7 @@ Note - The challenge will be done in Typescript
 - [09 Return Length of Arguments Passed ↗️](#09-Return-Length-of-Arguments-Passed)
 - [10 Allow One Function Call ↗️](#10-Allow-On-Function-Call)
 - [11 Memoize ↗️](#10-Memoize)
+- [12 Add Two Promise ↗️](#12-Add-Two-Promise)
 
   
 ## 01 Create Hello World Function
@@ -361,5 +362,27 @@ function memoize(fn: Fn): Fn {
  * memoizedFn(2, 3) // 5
  * memoizedFn(2, 3) // 5
  * console.log(callCount) // 1 
+ */
+```
+
+## 12 Add Two Promise
+### [Problem statement ↗️](https://leetcode.com/problems/add-two-promises/description/?envType=study-plan-v2&envId=30-days-of-javascript)
+Given two promises promise1 and promise2, return a new promise. promise1 and promise2 will both resolve with a number. The returned promise should resolve with the sum of the two numbers.
+
+### Solution
+
+```javascript
+type P = Promise<number>
+
+async function addTwoPromises(promise1: P, promise2: P): P {
+	const n1 = await promise1
+    const n2 = await promise2
+
+    return n1 + n2
+};
+
+/**
+ * addTwoPromises(Promise.resolve(2), Promise.resolve(2))
+ *   .then(console.log); // 4
  */
 ```
