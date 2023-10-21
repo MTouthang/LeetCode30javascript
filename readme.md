@@ -22,8 +22,8 @@ Note - The challenge will be done in Typescript
 - [10 Allow One Function Call ↗️](#10-Allow-On-Function-Call)
 - [11 Memoize ↗️](#10-Memoize)
 - [12 Add Two Promise ↗️](#12-Add-Two-Promise)
+- [13 Sleep ↗️](#13-Sleep)
 
-  
 ## 01 Create Hello World Function
 
 ### [Problem Statement ↗️](https://leetcode.com/problems/create-hello-world-function/?envType=study-plan-v2&envId=30-days-of-javascript)
@@ -384,5 +384,20 @@ async function addTwoPromises(promise1: P, promise2: P): P {
 /**
  * addTwoPromises(Promise.resolve(2), Promise.resolve(2))
  *   .then(console.log); // 4
+ */
+```
+## 13 Sleep
+### [Problem statement ↗️](https://leetcode.com/problems/sleep/description/?envType=study-plan-v2&envId=30-days-of-javascript)
+Given a positive integer millis, write an asynchronous function that sleeps for millis milliseconds. It can resolve any value.
+
+### Solution
+
+```javascript
+async function sleep(millis: number): Promise<void> {
+    await new Promise((resolve) =>  setTimeout(resolve, millis))
+}
+/** 
+ * let t = Date.now()
+ * sleep(100).then(() => console.log(Date.now() - t)) // 100
  */
 ```
