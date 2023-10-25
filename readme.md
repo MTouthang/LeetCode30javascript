@@ -25,6 +25,7 @@ Note - The challenge will be done in Typescript
 - [13 Sleep ↗️](#13-Sleep)
 - [14 Timeout Cancellation ↗️](#14-Timeout-Cancellation)
 - [15 Interval Cancellation ↗️](#15-Interval-Cancellation)
+- [16 Promise Time Limit ↗️](#16-Promise-Time-Limit)
 
 ## 01 Create Hello World Function
 
@@ -498,5 +499,35 @@ function cancellable(fn: Fn, args: JSONValue[], t: number): Function {
  *                         //      {"time":175,"returned":8}
  *                         //  ]
  *  }, cancelT + t + 15)    
+ */
+```
+
+## 16 Promise Time Limit
+### [Problem statement ↗️](https://leetcode.com/problems/promise-time-limit/?envType=study-plan-v2&envId=30-days-of-javascript)
+Given an asynchronous function fn and a time t in milliseconds, return a new time limited version of the input function. fn takes arguments provided to the time limited function.
+
+The time limited function should follow these rules:
+
+If the fn completes within the time limit of t milliseconds, the time limited function should resolve with the result.
+If the execution of the fn exceeds the time limit, the time limited function should reject with the string "Time Limit Exceeded".
+
+### Solution
+```javascript
+type Fn = (...params: any[]) => Promise<any>;
+
+function timeLimit(fn: Fn, t: number): Fn {
+    
+	return async function(...args) {
+        const timeOutSuccess = fn(...args);
+        const timeOut = new Promise((resolve, reject) => {
+            setTimeout(() => reject("Time Limit Exceeded"), t)
+        })
+        return Promise.race([timeOutSuccess, timeOut])
+    }
+};
+
+/**
+ * const limited = timeLimit((t) => new Promise(res => setTimeout(res, t)), 100);
+ * limited(150).catch(console.log) // "Time Limit Exceeded" at t=100ms
  */
 ```
