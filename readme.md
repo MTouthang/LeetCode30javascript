@@ -599,5 +599,22 @@ For example, let's say t = 50ms, and the function was called at 30ms, 60ms, and 
 The above diagram shows how debounce will transform events. Each rectangle represents 100ms and the debounce time is 400ms. Each color represents a different set of inputs.
 
 Please solve it without using lodash's _.debounce() function.
+```javascript
+type F = (...args: number[]) => void
 
+function debounce(fn: F, t: number): F {
+    let timeId
+    return function(...args) {
+        clearTimeout(timeId)
+        timeId = setTimeout(() => fn(...args), t)
+    }
+};
+
+/**
+ * const log = debounce(console.log, 100);
+ * log('Hello'); // cancelled
+ * log('Hello'); // cancelled
+ * log('Hello'); // Logged at t=100ms
+ */
+```
 
