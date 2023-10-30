@@ -27,6 +27,7 @@ Note - The challenge will be done in Typescript
 - [15 Interval Cancellation ↗️](#15-Interval-Cancellation)
 - [16 Promise Time Limit ↗️](#16-Promise-Time-Limit)
 - [17 Cache with Time Limit ↗️](#17-Cache-With-Time-Limit)
+- [18 Execute Asynchronous function in parallel ↗️](#Execute-Asynchronous-Functions-in-Parallel)
 
 ## 01 Create Hello World Function
 
@@ -599,6 +600,8 @@ For example, let's say t = 50ms, and the function was called at 30ms, 60ms, and 
 The above diagram shows how debounce will transform events. Each rectangle represents 100ms and the debounce time is 400ms. Each color represents a different set of inputs.
 
 Please solve it without using lodash's _.debounce() function.
+
+## Solution
 ```javascript
 type F = (...args: number[]) => void
 
@@ -618,3 +621,45 @@ function debounce(fn: F, t: number): F {
  */
 ```
 
+## Execute Asynchronous Functions in Parallel
+### [Problem statement ↗️ ](https://leetcode.com/problems/execute-asynchronous-functions-in-parallel/?envType=study-plan-v2&envId=30-days-of-javascript)
+Given an array of asynchronous `function` functions, return a new promise `promise`. The function in the array accepts no argument and returns a promise. All the promises should be executed in parallel
+
+`promise` resolves - 
+- When all the promises returned from functions were resolved successfully in parallel. The resolved value of promise should be an array of all the resolved values of promises in the same order as they were in the functions. The promise should resolve when all the asynchronous functions in the array have completed execution in parallel.
+
+`promise` rejects - 
+- When any of the promises returned from functions were rejected. promise should also reject with the reason of the first rejection.
+
+Please solve it without using the built-in `Promise.all` function
+
+### solution
+```javascript
+type Fn<T> = () => Promise<T>
+
+function promiseAll<T>(functions: Fn<T>[]): Promise<T[]> {
+	return new Promise((resolve, reject) => {
+        const output = [];
+        let count = functions.length
+
+        for(let i=0; i< functions.length; i++){
+            functions[i]()
+            .then((response) => {
+                output[i] = response;
+                count--;
+
+                if(count ===0) {
+                    return resolve(output)
+                }
+            }
+            
+            ).catch(reject)
+        }
+    })
+};
+
+/**
+ * const promise = promiseAll([() => new Promise(res => res(42))])
+ * promise.then(console.log); // [42]
+ */
+```
