@@ -27,7 +27,8 @@ Note - The challenge will be done in Typescript
 - [15 Interval Cancellation ↗️](#15-Interval-Cancellation)
 - [16 Promise Time Limit ↗️](#16-Promise-Time-Limit)
 - [17 Cache with Time Limit ↗️](#17-Cache-With-Time-Limit)
-- [18 Execute Asynchronous function in parallel ↗️](#Execute-Asynchronous-Functions-in-Parallel)
+- [18 Debounce ↗️](#18-Debounce)
+- [19 Execute Asynchronous function in parallel ↗️](#Execute-Asynchronous-Functions-in-Parallel)
 
 ## 01 Create Hello World Function
 
@@ -588,7 +589,7 @@ class TimeLimitedCache {
  * timeLimitedCache.count() // 1
  */
 ```
-## 17 Debounce
+## 18 Debounce
 ### [Problem statement ↗️ ](https://leetcode.com/problems/debounce/?envType=study-plan-v2&envId=30-days-of-javascript)
 Given function fn and a time in millisecond t, return a debounced version of that function
 
@@ -621,7 +622,7 @@ function debounce(fn: F, t: number): F {
  */
 ```
 
-## Execute Asynchronous Functions in Parallel
+##19 Execute Asynchronous Functions in Parallel
 ### [Problem statement ↗️ ](https://leetcode.com/problems/execute-asynchronous-functions-in-parallel/?envType=study-plan-v2&envId=30-days-of-javascript)
 Given an array of asynchronous `function` functions, return a new promise `promise`. The function in the array accepts no argument and returns a promise. All the promises should be executed in parallel
 
