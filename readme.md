@@ -29,6 +29,7 @@ Note - The challenge will be done in Typescript
 - [17 Cache with Time Limit ↗️](#17-Cache-With-Time-Limit)
 - [18 Debounce ↗️](#18-Debounce)
 - [19 Execute Asynchronous function in parallel ↗️](#Execute-Asynchronous-Functions-in-Parallel)
+- [20 Is Object Empty ↗️](#Is-Object-Empty)
 
 ## 01 Create Hello World Function
 
@@ -663,4 +664,21 @@ function promiseAll<T>(functions: Fn<T>[]): Promise<T[]> {
  * const promise = promiseAll([() => new Promise(res => res(42))])
  * promise.then(console.log); // [42]
  */
+```
+
+ ## 20 Is Object Empty
+ ### [Problem statement ↗️ ](https://leetcode.com/problems/is-object-empty/?envType=study-plan-v2&envId=30-days-of-javascript)
+ Given an object or an array, return if it is empty.
+- An empty object contains no key-value pairs.
+- An empty array contains no elements.
+You may assume the object or array is the output of JSON.parse.
+
+### Solution
+```javascript
+type JSONValue = null | boolean | number | string | JSONValue[] | { [key: string]: JSONValue };
+type Obj = Record<string, JSONValue> | JSONValue[]
+
+function isEmpty(obj: Obj): boolean {
+	return Object.keys(obj).length === 0 ? true : false
+};
 ```
