@@ -30,6 +30,7 @@ Note - The challenge will be done in Typescript
 - [18 Debounce ↗️](#18-Debounce)
 - [19 Execute Asynchronous function in parallel ↗️](#Execute-Asynchronous-Functions-in-Parallel)
 - [20 Is Object Empty ↗️](#Is-Object-Empty)
+- [21 Array Prototype Last](#Array-Prototype-Last)
 
 ## 01 Create Hello World Function
 
@@ -681,4 +682,28 @@ type Obj = Record<string, JSONValue> | JSONValue[]
 function isEmpty(obj: Obj): boolean {
 	return Object.keys(obj).length === 0 ? true : false
 };
+```
+
+ ## 21 Array Prototype Last
+ ### [Problem statement ↗️ ](https://leetcode.com/problems/array-prototype-last/?envType=study-plan-v2&envId=30-days-of-javascript)
+Write code that enhances all arrays such that you can call the array.last() method on any array and it will return the last element. If there are no elements in the array, it should return -1.
+
+### Solution
+```javascript
+declare global {
+    interface Array<T> {
+        last(): T | -1;
+    }
+}
+
+Array.prototype.last = function() {
+    return this.length ? this[this.length -1]: -1
+};
+
+/**
+ * const arr = [1, 2, 3];
+ * arr.last(); // 3
+ */
+
+export {};
 ```
