@@ -31,6 +31,7 @@ Note - The challenge will be done in Typescript
 - [19 Execute Asynchronous function in parallel ↗️](#Execute-Asynchronous-Functions-in-Parallel)
 - [20 Is Object Empty ↗️](#Is-Object-Empty)
 - [21 Array Prototype Last](#Array-Prototype-Last)
+- [22 Chunk Array ↗️](#22-Chunk-Array)
 
 ## 01 Create Hello World Function
 
@@ -706,4 +707,35 @@ Array.prototype.last = function() {
  */
 
 export {};
+```
+
+ ## 22 Chunk Array 
+ ### [Problem statement ↗️ ](https://leetcode.com/problems/chunk-array/?envType=study-plan-v2&envId=30-days-of-javascript)
+Given an array arr and a chunk size size, return a chunked array. A chunked array contains the original elements in arr, but consists of subarrays each of length size. The length of the last subarray may be less than size if arr.length is not evenly divisible by size.
+You may assume the array is the output of JSON.parse. In other words, it is valid JSON.
+Please solve it without using lodash's _.chunk function.
+
+### Solution
+```javascript
+type JSONValue = null | boolean | number | string | JSONValue[] | { [key: string]: JSONValue };
+type Obj = Record<string, JSONValue> | Array<JSONValue>;
+
+function chunk(arr: Obj[], size: number): Obj[][] {
+    const output: Obj[][] = []
+
+    const iteration = Math.ceil(arr.length/size)
+
+    let chunk = 0
+
+    while(chunk < iteration){
+        if(arr.length > size){
+            let data = arr.splice(0, size)
+            output.push(data)
+        } else {
+            output.push(arr)
+        }
+        chunk += 1
+    }
+    return output
+};
 ```
