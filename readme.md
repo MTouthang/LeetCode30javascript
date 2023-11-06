@@ -32,6 +32,7 @@ Note - The challenge will be done in Typescript
 - [20 Is Object Empty ↗️](#Is-Object-Empty)
 - [21 Array Prototype Last](#Array-Prototype-Last)
 - [22 Chunk Array ↗️](#22-Chunk-Array)
+- [23 ↗️](#Group-by)
 
 ## 01 Create Hello World Function
 
@@ -738,4 +739,45 @@ function chunk(arr: Obj[], size: number): Obj[][] {
     }
     return output
 };
+```
+ ## 23 Group by 
+ ### [Problem statement ↗️ ](https://leetcode.com/problems/group-by/?envType=study-plan-v2&envId=30-days-of-javascript)
+Write code that enhances all arrays such that you can call the array.groupBy(fn) method on any array and it will return a grouped version of the array.
+
+A grouped array is an object where each key is the output of fn(arr[i]) and each value is an array containing all items in the original array with that key.
+
+The provided callback fn will accept an item in the array and return a string key.
+
+The order of each value list should be the order the items appear in the array. Any order of keys is acceptable.
+
+Please solve it without lodash's _.groupBy function.
+### Solution
+```javascript
+declare global {
+    interface Array<T> {
+        groupBy(fn: (item: T) => string): Record<string, T[]>
+    }
+}
+
+Array.prototype.groupBy = function(fn) {
+    const result: Record<string, any[]> = {}
+
+    for (let i = 0; i < this.length; i++) {
+        const key: string = fn(this[i])
+
+        if (result[key]) {
+            result[key].push(this[i])
+        } else {
+            result[key] = [this[i]]
+        }
+    }
+    console.log(result)
+    return result
+}
+
+export {}
+
+/**
+ * [1,2,3].groupBy(String) // {"1":[1],"2":[2],"3":[3]}
+ */
 ```
