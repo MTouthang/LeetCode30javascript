@@ -32,7 +32,8 @@ Note - The challenge will be done in Typescript
 - [20 Is Object Empty ↗️](#Is-Object-Empty)
 - [21 Array Prototype Last](#Array-Prototype-Last)
 - [22 Chunk Array ↗️](#22-Chunk-Array)
-- [23 ↗️](#Group-by)
+- [23 Group by ↗️](#Group-by)
+- [24 Sort by ↗️](#24-Sort-by)
 
 ## 01 Create Hello World Function
 
@@ -710,7 +711,7 @@ Array.prototype.last = function() {
 export {};
 ```
 
- ## 22 Chunk Array 
+## 22 Chunk Array 
  ### [Problem statement ↗️ ](https://leetcode.com/problems/chunk-array/?envType=study-plan-v2&envId=30-days-of-javascript)
 Given an array arr and a chunk size size, return a chunked array. A chunked array contains the original elements in arr, but consists of subarrays each of length size. The length of the last subarray may be less than size if arr.length is not evenly divisible by size.
 You may assume the array is the output of JSON.parse. In other words, it is valid JSON.
@@ -740,8 +741,8 @@ function chunk(arr: Obj[], size: number): Obj[][] {
     return output
 };
 ```
- ## 23 Group by 
- ### [Problem statement ↗️ ](https://leetcode.com/problems/group-by/?envType=study-plan-v2&envId=30-days-of-javascript)
+## 23 Group by 
+### [Problem statement ↗️ ](https://leetcode.com/problems/group-by/?envType=study-plan-v2&envId=30-days-of-javascript)
 Write code that enhances all arrays such that you can call the array.groupBy(fn) method on any array and it will return a grouped version of the array.
 
 A grouped array is an object where each key is the output of fn(arr[i]) and each value is an array containing all items in the original array with that key.
@@ -780,4 +781,25 @@ export {}
 /**
  * [1,2,3].groupBy(String) // {"1":[1],"2":[2],"3":[3]}
  */
+```
+## 24 Sort by 
+### [Problem statement ↗️ ](https://leetcode.com/problems/sort-by/?envType=study-plan-v2&envId=30-days-of-javascript)
+Given an array arr and a function fn, return a sorted array sortedArr. You can assume fn only returns numbers and those numbers determine the sort order of sortedArr. sortedArray must be sorted in ascending order by fn output.
+
+You may assume that fn will never duplicate numbers for a given array.
+### Solution
+```javascript
+type JSONValue = null | boolean | number | string | JSONValue[] | { [key: string]: JSONValue };
+type Fn = (value: JSONValue) => number
+
+function sortBy(arr: JSONValue[], fn: Fn): JSONValue[] {
+	const newArr = arr.map((e) =>{
+        return {
+             v: fn(e),
+             o: e
+        }
+       
+    })
+     return newArr.sort((a, b) => a.v - b.v).map((e) => e.o);
+    };
 ```
